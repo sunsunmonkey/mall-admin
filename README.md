@@ -20,3 +20,8 @@ cd到backend
 然后参考 https://gitee.com/ZHANG_6666/express--vue3--ant-design2
 
 
+## 声明
+
+学校课程设计作业，参考大佬项目
+https://gitee.com/ZHANG_6666/crm-template#2-yarn-serve
+https://gitee.com/ZHANG_6666/express--vue3--ant-design2
