@@ -3,7 +3,7 @@
     <div class="login-containter">
       <div class="header">
         <img :src="$drawAssetsImage('logo.png')" />
-        <span>电商后台管理系统</span>
+        <span>电商管理系统</span>
       </div>
       <div class="describe">基于vue搭建的后台管理系统</div>
     </div>
