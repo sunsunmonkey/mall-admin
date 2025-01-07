@@ -1,120 +1,101 @@
 <template>
-  <div class="home">
-    <a-row>
-      <a-col :span="8">
-        <div class="author">
-          <div :style="{ textAlign: 'left', width: '600px', margin: '0 auto' }">
-            <div>
-              <a-image :width="70" :src="$drawAssetsImage('author.png')" />
-            </div>
-            <div style="width: 30px">
-              <b>CSDN:</b>
-              <a href="https://blog.csdn.net/weixin_43835425" target="_brank"
-                >https://blog.csdn.net/weixin_43835425
-              </a>
-            </div>
-            <div>
-              <b>前端:</b>
-              <a href="https://gitee.com/ZHANG_6666/crm-template" target="_brank"
-                >https://gitee.com/ZHANG_6666/crm-template</a
-              >
-            </div>
-            <div>
-              <b>后端:</b>
-              <a
-                href="https://gitee.com/ZHANG_6666/express--vue3--ant-design2"
-                target="_brank"
-                >https://gitee.com/ZHANG_6666/express--vue3--ant-design2</a
-              >
-            </div>
-            <div>
-              <b>小程序端:</b>
-              <a href="https://gitee.com/ZHANG_6666/uni-app" target="_brank"
-                >https://gitee.com/ZHANG_6666/uni-app</a
-              >
-            </div>
-          </div>
-        </div>
+  <div class="hello">
+    <a-avatar style="background-color: #1890ff" :size="60">{{
+      state.userInfo.userAccount[0]
+    }}</a-avatar>
+    <div class="text-hello">你好！ {{ state.userInfo.userAccount }}</div>
+  </div>
+  <div class="text">pv uv 数据</div>
+  <div style="background: #ececec; padding: 30px" class="data-card">
+    <a-row :gutter="16">
+      <a-col :span="12">
+        <a-card>
+          <a-statistic
+            title="uv"
+            :value="11.28"
+            :precision="2"
+            suffix="%"
+            :value-style="{ color: '#3f8600' }"
+            style="margin-right: 50px"
+          >
+            <template #prefix>
+              <arrow-up-outlined />
+            </template>
+          </a-statistic>
+        </a-card>
       </a-col>
-      <a-col :span="16">
-        <p><b>当前项目封装的一些组件和指令</b></p>
-        <z-table bordered :pagination="false" :dataSource="dataSource" :columns="columns">
-          <template #bodyCell="{ column, text, record }">
-            <template v-if="column.dataIndex === 'template'">
-              <z-text-tooltip placement="top" :lineClamp="1">
-                {{ text }}
-              </z-text-tooltip>
+      <a-col :span="12">
+        <a-card>
+          <a-statistic
+            title="pv"
+            :value="9.3"
+            :precision="2"
+            suffix="%"
+            class="demo-class"
+            :value-style="{ color: '#cf1322' }"
+          >
+            <template #prefix>
+              <arrow-down-outlined />
             </template>
-            <template v-if="column.dataIndex === 'describe'">
-              <z-text-tooltip placement="top" :lineClamp="2">
-                {{ text }}
-              </z-text-tooltip>
-            </template>
-            <template v-if="column.dataIndex === 'other'">
-              <z-text-tooltip placement="top" :lineClamp="1">
-                {{ text }}
-              </z-text-tooltip>
-            </template>
-          </template>
-        </z-table>
+          </a-statistic>
+        </a-card>
       </a-col>
-    </a-row>
-    <a-row>
-      <div id="echarts"></div>
     </a-row>
   </div>
+  <div class="text">用户走势数据</div>
+  <div id="chart" style="height: 500px"></div>
 </template>
 
 <script setup>
-import { getCurrentInstance, onMounted, onUnmounted, ref } from "vue";
-import { getLocationParams, deepCopy } from "@/utils/utilityFunction";
-import { GEO_3D_OPTIONS } from "@/config/echartsConfig.js";
-import { tableColumns, tableData } from "./homeData.js";
+import { useStore } from "vuex";
+import { reactive, onMounted } from "vue";
 import * as echarts from "echarts";
-import "echarts-gl";
-const { $scoketEvent, $bus } = getCurrentInstance().proxy;
-const myChart = ref();
-const dataSource = tableData;
-const columns = tableColumns;
-onMounted(() => {
-  echartsInit();
-  $bus.emit("receive", "$bus全局总事件调用,home组件加载完毕");
-});
-
-const echartsInit = () => {
-  myChart.value = echarts.init(document.getElementById("echarts"));
-  myChart.value.setOption(GEO_3D_OPTIONS);
-  window.addEventListener("resize", myChart.value.resize);
-};
 
 onMounted(() => {
-  $scoketEvent.messageSend("scoket发送消息测试");
-});
-$scoketEvent.messageListener(msg => {
-   console.log('scoket监听接收消息测试:',msg);
+  const chartDom = document.getElementById("chart");
+  const myChart = echarts.init(chartDom);
+
+  const option = {
+    xAxis: {
+      type: "category",
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: [320, 432, 501, 934, 1290, 1330, 1320],
+        type: "line",
+        smooth: true,
+      },
+    ],
+  };
+
+  option && myChart.setOption(option);
 });
 
-//清除监听
-onUnmounted(() => {
-  window.removeEventListener("resize", myChart.value.resize);
-  $bus.off("receive");
-  myChart.value.dispose();
+const store = useStore();
+const state = reactive({
+  userInfo: store.state.login.userInfo,
 });
 </script>
-
 <style scoped lang="less">
-.home {
-  .author {
-    display: flex;
-    justify-content: center;
-    div {
-      margin-bottom: 20px;
-    }
+.text {
+  font-size: 20px;
+  margin-top: 20px;
+}
+.hello {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  justify-content: space-around;
+  margin-top: 20px;
+  .text-hello {
+    font-size: 20px;
   }
-  #echarts {
-    width: 60%;
-    margin: 0 auto;
-    height: calc(100vh - 100px);
-  }
+}
+.data-card {
+  margin-top: 20px;
 }
 </style>

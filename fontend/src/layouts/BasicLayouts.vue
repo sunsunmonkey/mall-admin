@@ -10,12 +10,15 @@
         <MenuUnfoldOutlined v-show="!collapsed" />
       </template>
       <div class="logo">
-        <img src="https://store.antdv.com/pro/preview/img/logo.59818776.png" />
-        <span>一韵茶叶管理系统</span>
+        <img :src="$drawAssetsImage('logo.png')" />
+        <span style="margin-left: 5px">电商管理系统</span>
       </div>
       <z-menu></z-menu>
     </a-layout-sider>
-    <div class="sider-hidden" :style="{ width: !collapsed ? '200px' : '80px' }"></div>
+    <div
+      class="sider-hidden"
+      :style="{ width: !collapsed ? '200px' : '80px' }"
+    ></div>
     <a-layout class="layout-content">
       <a-layout-header class="layout-header">
         <div class="trigger">

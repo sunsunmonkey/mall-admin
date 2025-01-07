@@ -15,6 +15,7 @@ const { $bus } = getCurrentInstance().proxy;
 $bus.on('receive',(msg)=>{
        console.log(msg)
 })
+
 const store = useStore();
 const state = reactive({
   name: computed(() => {

@@ -11,7 +11,7 @@ const whiteList = ['login', 'NoRole'] //免登录白名单
 
 router.beforeEach(async (to, from, next) => {
     NProgress.start()
-    to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${'ZHANG_666'}-${to.meta.title}`))
+    to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${'电商管理系统'}-${to.meta.title}`))
     //判断是否登录
     if (VueCookies.get(ACCESS_TOKEN)) {
         if (to.path == '/loginview/login') {
