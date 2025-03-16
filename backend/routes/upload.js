@@ -30,7 +30,7 @@ router.post('/image', upload.single("file"), (req, res, next) => {
         code: 1,
         message: '操作成功',
         data: {
-            path: `http://localhost:99/` + req.file.path.replace(/\\/g, '/')
+            path: `http://47.97.29.160:99/` + req.file.path.replace(/\\/g, '/')
         }
     })
 })
@@ -53,7 +53,7 @@ router.post('/batchimage', upload.array('file', 20), (req, res, next) => {
     try {
         const data = req.files.map(v => {
             let file = {
-                path: `http://localhost:99/` + v.path.replace(/\\/g, '/')
+                path: `http://47.97.29.160:99/` + v.path.replace(/\\/g, '/')
             }
             return file
         })

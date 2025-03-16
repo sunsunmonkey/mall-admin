@@ -14,6 +14,7 @@
  Date: 07/05/2023 11:39:25
 */
 
+use ZB_DATA;
 
 // ----------------------------
 // Collection structure for cartList
