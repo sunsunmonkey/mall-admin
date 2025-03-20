@@ -95,7 +95,6 @@
           </template>
           <template v-if="column.dataIndex === 'action'">
             <a-button v-auth="['Btn_Edit_Goods']" type="link" @click="onEditGoods(record)">编辑</a-button>
-            <a-button v-auth="['Btn_Edit_Goods']" type="link" @click="setGoodsDetail(record)">设置商品详情</a-button>
           </template>
         </template>
       </z-table>

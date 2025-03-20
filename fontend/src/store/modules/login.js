@@ -2,7 +2,6 @@
 import VueCookies from 'vue-cookies'
 import { ACCESS_TOKEN } from '@/config/constant'
 import { getUserInfo, login } from '@/api/login'
-import { webScoketInit } from '@/utils/webScoket'; //webscoket 全局方法
 const logins = {
     state: {
         userInfo: {},
@@ -38,8 +37,6 @@ const logins = {
                 }
                 commit('SET_USER_INFO', data)
                 commit('SET_USER_BTN', data.btnAuthList)
-                //scoket 初始化连接
-                webScoketInit()
                 reslove(data)
             })
         },

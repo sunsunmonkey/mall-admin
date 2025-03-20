@@ -3478,7 +3478,7 @@ db.createCollection("userInfoList");
 db.getCollection("userInfoList").insert([ {
     _id: ObjectId("6145ea5b5368494d3486bc2d"),
     __v: NumberInt("0"),
-    createTime: "2021-09-18 21:32:11",
+    createTime: "2025-3-15 21:32:11",
     email: "1259558183@qq.com",
     passWord: "03adf148360d42274c42decb95b43661",
     phone: "15958665541",
@@ -3496,7 +3496,7 @@ db.getCollection("userInfoList").insert([ {
 db.getCollection("userInfoList").insert([ {
     _id: ObjectId("6153da418603ce66ac84ae9f"),
     __v: NumberInt("0"),
-    createTime: "2021-09-29 11:15:13",
+    createTime: "2025-3-15 11:15:13",
     email: "1259558183@qq.com",
     passWord: "e10adc3949ba59abbe56e057f20f883e",
     phone: "15008356350",
@@ -3514,7 +3514,7 @@ db.getCollection("userInfoList").insert([ {
 db.getCollection("userInfoList").insert([ {
     _id: ObjectId("61815891834e15ff4892024e"),
     __v: NumberInt("0"),
-    createTime: "2021-11-02 23:26:09",
+    createTime: "2025-3-15 23:26:09",
     email: null,
     passWord: "e10adc3949ba59abbe56e057f20f883e",
     phone: "15256522562",
@@ -3534,7 +3534,7 @@ db.getCollection("userInfoList").insert([ {
 db.getCollection("userInfoList").insert([ {
     _id: ObjectId("6181594c834e15ff4892024f"),
     __v: NumberInt("0"),
-    createTime: "2021-11-02 23:29:16",
+    createTime: "2025-3-19 23:29:16",
     email: null,
     passWord: "e10adc3949ba59abbe56e057f20f883e",
     phone: "15985658523",
@@ -3548,7 +3548,7 @@ db.getCollection("userInfoList").insert([ {
 db.getCollection("userInfoList").insert([ {
     _id: ObjectId("61892e7953a376a70c90e323"),
     __v: NumberInt("0"),
-    createTime: "2021-11-08 22:04:41",
+    createTime: "2025-3-20 22:04:41",
     email: null,
     passWord: "03adf148360d42274c42decb95b43661",
     phone: "15982328805",
@@ -3562,22 +3562,4 @@ db.getCollection("userInfoList").insert([ {
         "测试"
     ],
     userType: NumberInt("2")
-} ]);
-db.getCollection("userInfoList").insert([ {
-    _id: ObjectId("6311c93289af37c7a0f04a0e"),
-    userRole: [
-        "6145ee775368494d3486bc32"
-    ],
-    userRoleName: [
-        "商品中心管理员"
-    ],
-    userAccount: "zhangbo",
-    passWord: "e10adc3949ba59abbe56e057f20f883e",
-    createTime: "2022-09-02 17:13:22",
-    phone: "15982228807",
-    email: "1259558183@qq.com",
-    userType: NumberInt("1"),
-    status: null,
-    __v: NumberInt("0"),
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoi5puFIiwiaWQiOiIxMHBia2Y4YnUzb2cwMDAwMCIsImlhdCI6MTY2OTUzNTQxMiwiZXhwIjoxNjY5ODk1NDEyfQ.4ZJmEKReZgUUW5X8DK32dUKEwEZAKn9e1RajEWbY4yk"
 } ]);
