@@ -26,12 +26,12 @@
           v-model:value="form.sort"
         />
       </a-form-item>
-      <a-form-item label="状态" name="status" ref="status">
+      <!-- <a-form-item label="状态" name="status" ref="status">
         <a-radio-group v-model:value="form.status">
           <a-radio :value="1">使用中</a-radio>
           <a-radio :value="0">已停用</a-radio>
         </a-radio-group>
-      </a-form-item>
+      </a-form-item> -->
       <a-form-item label="品牌图标" name="logoFilePath">
         <z-upload
           list-type="picture-card"

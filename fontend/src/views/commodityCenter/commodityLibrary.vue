@@ -1,29 +1,71 @@
 <template>
   <a-row>
     <a-col :span="24">
-      <a-button type="primary" :style="{ margin: '10px 0px' }" v-auth="['Btn_Add_Goods']" @click="onAddgoods">新增商品+</a-button>
+      <a-button
+        type="primary"
+        :style="{ margin: '10px 0px' }"
+        v-auth="['Btn_Add_Goods']"
+        @click="onAddgoods"
+        >新增商品+</a-button
+      >
       <!-- 查询区域 -->
       <ul class="query-handle">
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.goodsName" placeholder="商品名称" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.goodsName"
+            placeholder="商品名称"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.brandName" placeholder="品牌名称" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.brandName"
+            placeholder="品牌名称"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.categoryName" placeholder="分类名称" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.categoryName"
+            placeholder="分类名称"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.goodsNo" placeholder="商品货号" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.goodsNo"
+            placeholder="商品货号"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.skuName" placeholder="规格名称" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.skuName"
+            placeholder="规格名称"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-input style="width: 140px" v-model:value.trim="pageData.queryInfo.placeOrigin" placeholder="产地" @keyup.enter="onChangeSearch" />
+          <a-input
+            style="width: 140px"
+            v-model:value.trim="pageData.queryInfo.placeOrigin"
+            placeholder="产地"
+            @keyup.enter="onChangeSearch"
+          />
         </li>
         <li>
-          <a-select v-model:value="pageData.queryInfo.goodsType" placeholder="商品类型" style="width: 160px" @change="onChangeSearch" show-search>
+          <a-select
+            v-model:value="pageData.queryInfo.goodsType"
+            placeholder="商品类型"
+            style="width: 160px"
+            @change="onChangeSearch"
+            show-search
+          >
             <a-select-option :value="1">普通商品</a-select-option>
             <a-select-option :value="2">秒杀商品</a-select-option>
             <a-select-option :value="3">团购商品</a-select-option>
@@ -37,8 +79,18 @@
         </li>
       </ul>
       <!-- 表内容 -->
-      <z-table :dataSource="dataSource" bordered rowKey="_id" :columns="columns" :scroll="{x:1400}" v-model:pageNumber="pageData.queryInfo.pageNumber" v-model:pageSize="pageData.queryInfo.pageSize" v-model:total="pageData.total" @onPagination="onPagination">
-        <template #bodyCell="{ column, text,record }">
+      <z-table
+        :dataSource="dataSource"
+        bordered
+        rowKey="_id"
+        :columns="columns"
+        :scroll="{ x: 1400 }"
+        v-model:pageNumber="pageData.queryInfo.pageNumber"
+        v-model:pageSize="pageData.queryInfo.pageSize"
+        v-model:total="pageData.total"
+        @onPagination="onPagination"
+      >
+        <template #bodyCell="{ column, text, record }">
           <template v-if="column.dataIndex === 'status'">
             <div v-if="text == 1">在售</div>
           </template>
@@ -46,7 +98,12 @@
             <div class="goods-info">
               <div class="sku-img">
                 <a :href="record.designSketch" target="_brank">
-                  <img :src="record.designSketch" width="100" height="100" alt />
+                  <img
+                    :src="record.designSketch"
+                    width="100"
+                    height="100"
+                    alt
+                  />
                 </a>
               </div>
               <ul class="info">
@@ -62,12 +119,12 @@
                   <span class="lable">SKU规格:</span>
                   <span>
                     {{
-                    goodsSkuSet(
-                    record.specValue1,
-                    record.specValue2,
-                    record.specValue3,
-                    record.specValue4
-                    )
+                      goodsSkuSet(
+                        record.specValue1,
+                        record.specValue2,
+                        record.specValue3,
+                        record.specValue4
+                      )
                     }}
                   </span>
                 </li>
@@ -94,7 +151,12 @@
             </div>
           </template>
           <template v-if="column.dataIndex === 'action'">
-            <a-button v-auth="['Btn_Edit_Goods']" type="link" @click="onEditGoods(record)">编辑</a-button>
+            <a-button
+              v-auth="['Btn_Edit_Goods']"
+              type="link"
+              @click="onEditGoods(record)"
+              >编辑</a-button
+            >
           </template>
         </template>
       </z-table>
@@ -108,36 +170,29 @@ const columns = [
     title: "商品货号",
     dataIndex: "goodsNo",
     align: "center",
-    width: 110
-  },
-
-  {
-    title: "状态",
-    dataIndex: "status",
-    align: "center",
-    width: 80
+    width: 110,
   },
   {
     title: "规格名称",
     dataIndex: "skuName",
-    align: "center"
+    align: "center",
   },
   {
     title: "商品信息",
     dataIndex: "goodsName",
-    align: "center"
+    align: "center",
   },
   {
     title: "品牌名称",
     dataIndex: "brandName",
     align: "center",
-    width: 140
+    width: 140,
   },
   {
     title: "分类名称",
     dataIndex: "categoryName",
     align: "center",
-    width: 140
+    width: 140,
   },
 
   {
@@ -145,8 +200,8 @@ const columns = [
     dataIndex: "action",
     align: "center",
     fixed: "right",
-    width: 130
-  }
+    width: 130,
+  },
 ];
 import { getGoodsList } from "@/api/commodityCenter";
 import { reactive, toRefs, ref, onMounted, getCurrentInstance } from "vue";
@@ -162,18 +217,18 @@ const pageData = reactive({
     goodsNo: null,
     skuName: null,
     placeOrigin: null,
-    goodsType: null
+    goodsType: null,
   },
-  total: 0
+  total: 0,
 });
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 const getList = () => {
-  getGoodsList(pageData.queryInfo).then(res => {
+  getGoodsList(pageData.queryInfo).then((res) => {
     if (res.code != 1) {
       return;
     }
-    dataSource.value = res.data.map(v => {
+    dataSource.value = res.data.map((v) => {
       v.designSketch = v.designSketch[0] || null;
       return v;
     });
@@ -186,20 +241,20 @@ const onAddgoods = () => {
   router.push({ path: proxy.$urls.Add_Edit_Commodity_Library });
 };
 //编辑
-const onEditGoods = record => {
+const onEditGoods = (record) => {
   proxy.$session.set("commodity_libray_info", pageData.queryInfo);
   router.push({
     path: proxy.$urls.Add_Edit_Commodity_Library,
-    query: { goodsId: record.goodsId }
+    query: { goodsId: record.goodsId },
   });
 };
 
 //设置商品详情
-const setGoodsDetail = record => {
+const setGoodsDetail = (record) => {
   proxy.$session.set("commodity_libray_info", pageData.queryInfo);
   router.push({
     path: proxy.$urls.Set_Goods_Detail,
-    query: { id: record._id }
+    query: { id: record._id },
   });
 };
 
@@ -219,7 +274,7 @@ const goodsSkuSet = (specValue1, specValue2, specValue3, specValue4) => {
   }
 };
 
-const onPagination = current => {
+const onPagination = (current) => {
   getList();
 };
 const onChangeSearch = () => {
@@ -237,7 +292,7 @@ const onResult = () => {
     goodsNo: null,
     skuName: null,
     placeOrigin: null,
-    goodsType: null
+    goodsType: null,
   });
   getList();
 };
