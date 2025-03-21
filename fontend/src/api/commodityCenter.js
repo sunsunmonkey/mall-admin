@@ -171,3 +171,13 @@ export function getGoodsDetails(id) {
         }
     })
 }
+
+export function getGoodsDetails(id) {
+    return request({
+        url: api.getGoodsDetails,
+        method: 'post',
+        data: {
+            id
+        }
+    })
+}
